@@ -45,6 +45,7 @@ export const register = async (req, res) => {
         fullName: newUser.fullName,
         email: newUser.email,
         profilePic: newUser.profilePic,
+        token,
       });
     } else {
       return res.status(500).json({ message: "Something went wrong" });
@@ -79,6 +80,7 @@ export const login = async (req, res) => {
       fullName: user.fullName,
       email: user.email,
       profilePic: user.profilePic,
+      token,
     });
   } catch (error) {
     console.log("Error in login controller:", error.message);

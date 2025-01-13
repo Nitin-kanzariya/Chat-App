@@ -4,7 +4,7 @@ import config from "../config/index.js";
 
 export const protectRoute = async (req, res, next) => {
   try {
-    let token = req.cookies.jwt;
+    let token = req.headers["token"];
 
     if (!token) {
       return res.status(401).json({

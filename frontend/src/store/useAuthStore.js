@@ -3,6 +3,7 @@ import { axiosInstance } from "../lib/axios.js";
 import toast from "react-hot-toast";
 import { io } from "socket.io-client";
 import config from "../config";
+import Cookies from "js-cookie";
 
 export const useAuthStore = create((set, get) => ({
   authUser: null,
@@ -29,6 +30,7 @@ export const useAuthStore = create((set, get) => ({
     set({ isSigningUp: true });
     try {
       const res = await axiosInstance.post("/auth/register", data);
+      Cookies.set("jwt", res.data.token, { expires: 7 });
       set({ authUser: res.data });
       toast.success("Account created successfully");
       get().connectSocket();
@@ -44,6 +46,7 @@ export const useAuthStore = create((set, get) => ({
     set({ isLoggingIn: true });
     try {
       const res = await axiosInstance.post("/auth/login", data);
+      Cookies.set("jwt", res.data.token, { expires: 7 });
       set({ authUser: res.data });
       toast.success("Logged in successfully");
 
@@ -80,7 +83,10 @@ export const useAuthStore = create((set, get) => ({
   resetPassword: async (data) => {
     try {
       console.log(data);
-      const res = await axiosInstance.post(`/auth/reset-password/${data.token}`, data);
+      const res = await axiosInstance.post(
+        `/auth/reset-password/${data.token}`,
+        data
+      );
       toast.success(res.data.message);
     } catch (error) {
       toast.error(error.response.data.message);
