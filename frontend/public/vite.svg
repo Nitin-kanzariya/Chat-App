@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg 
+  xmlns="http://www.w3.org/2000/svg" 
+  viewBox="0 0 400 400" 
+  width="500" 
+  height="500">
+  <!-- Chat bubble shape -->
+  <path d="
+    M 400 200
+    C 400 100 320 50 250 50
+    C 180 50 100 100 100 200
+    C 100 260 130 300 170 330
+    L 150 450
+    L 250 380
+    C 320 380 400 300 400 200
+    Z" 
+    fill="#00CED1"/>
+    
+  <!-- Three dots -->
+  <circle cx="250" cy="200" r="20" fill="#FF4500"/>
+  <circle cx="180" cy="200" r="20" fill="#FF4500"/>
+  <circle cx="320" cy="200" r="20" fill="#FF4500"/>
+</svg>
